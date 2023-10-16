@@ -1,0 +1,339 @@
+===== Primitives =====
+{ "1": Set(3) { Sym { name: "x" }, " ", 1 } }
+===== Operations =====
+[
+  {
+    name: "left",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "right",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "concatenate",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "strLength",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through left =====
+Expression evaluated 0
+===== Growing through right =====
+Expression evaluated 0
+===== Growing through concatenate =====
+Expression evaluated 0
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 3
+========== Weight 3 ==========
+===== Growing through left =====
+Expression evaluated 0
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 3
+Program:
+(left x 1.0)
+===== Primitives =====
+{ "1": Set(3) { Sym { name: "x" }, " ", 1 } }
+===== Operations =====
+[
+  {
+    name: "left",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "right",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "concatenate",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "strLength",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through left =====
+Expression evaluated 0
+===== Growing through right =====
+Expression evaluated 0
+===== Growing through concatenate =====
+Expression evaluated 0
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 3
+========== Weight 3 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 6
+===== Growing through right =====
+Expression evaluated 0
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 3
+Program:
+(right x 1.0)
+===== Primitives =====
+{ "1": Set(4) { Sym { name: "x" }, Sym { name: "y" }, " ", 1 } }
+===== Operations =====
+[
+  {
+    name: "left",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "right",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "concatenate",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "strLength",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through left =====
+Expression evaluated 0
+===== Growing through right =====
+Expression evaluated 0
+===== Growing through concatenate =====
+Expression evaluated 0
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 4
+========== Weight 3 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 12
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 12
+===== Growing through concatenate =====
+Expression evaluated 0
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 3
+Program:
+(concatenate x y)
+===== Primitives =====
+{ "1": Set(4) { Sym { name: "x" }, Sym { name: "y" }, " ", 1 } }
+===== Operations =====
+[
+  {
+    name: "left",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "right",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "concatenate",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "strLength",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through left =====
+Expression evaluated 0
+===== Growing through right =====
+Expression evaluated 0
+===== Growing through concatenate =====
+Expression evaluated 0
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 4
+========== Weight 3 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 12
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 12
+===== Growing through concatenate =====
+Expression evaluated 0
+Expression evaluated 12
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 4
+========== Weight 4 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 32
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 32
+===== Growing through concatenate =====
+Expression evaluated 0
+Expression evaluated 32
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 15
+========== Weight 5 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 132
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 132
+===== Growing through concatenate =====
+Expression evaluated 0
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 5
+Program:
+(concatenate x (concatenate " " y))
+===== Primitives =====
+{ "1": Set(3) { Sym { name: "x" }, " ", 1 } }
+===== Operations =====
+[
+  {
+    name: "left",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "right",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "concatenate",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "strLength",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through left =====
+Expression evaluated 0
+===== Growing through right =====
+Expression evaluated 0
+===== Growing through concatenate =====
+Expression evaluated 0
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 3
+========== Weight 3 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 6
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 6
+===== Growing through concatenate =====
+Expression evaluated 0
+Expression evaluated 6
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 3
+========== Weight 4 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 18
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 18
+===== Growing through concatenate =====
+Expression evaluated 0
+Expression evaluated 18
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 8
+========== Weight 5 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 54
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 54
+===== Growing through concatenate =====
+Expression evaluated 0
+Expression evaluated 54
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 14
+========== Weight 6 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 132
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 132
+===== Growing through concatenate =====
+Expression evaluated 0
+Expression evaluated 132
+===== Growing through strLength =====
+Expression evaluated 0
+Expression evaluated 50
+========== Weight 7 ==========
+===== Growing through left =====
+Expression evaluated 0
+Expression evaluated 440
+===== Growing through right =====
+Expression evaluated 0
+Expression evaluated 440
+===== Growing through concatenate =====
+Expression evaluated 0
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 7
+Program:
+(concatenate (left x 1.0) (right x 1.0))

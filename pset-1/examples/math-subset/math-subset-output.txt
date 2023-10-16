@@ -1,0 +1,113 @@
+===== Primitives =====
+{ "1": Set(3) { Sym { name: "x" }, Sym { name: "y" }, 1 } }
+===== Operations =====
+[
+  {
+    name: "if",
+    arity: 3,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "<",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "+",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "-",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "*",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "=",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through if =====
+Expression evaluated 0
+===== Growing through < =====
+Expression evaluated 0
+===== Growing through + =====
+Expression evaluated 0
+===== Growing through - =====
+Expression evaluated 0
+===== Growing through * =====
+Expression evaluated 0
+===== Growing through = =====
+Expression evaluated 0
+========== Weight 3 ==========
+===== Growing through if =====
+Expression evaluated 0
+===== Growing through < =====
+Expression evaluated 1
+Expression evaluated 6
+===== Growing through + =====
+Expression evaluated 1
+Expression evaluated 6
+===== Growing through - =====
+Expression evaluated 1
+Expression evaluated 6
+===== Growing through * =====
+Expression evaluated 1
+Expression evaluated 6
+===== Growing through = =====
+Expression evaluated 1
+Expression evaluated 6
+========== Weight 4 ==========
+===== Growing through if =====
+Expression evaluated 1
+Expression evaluated 6
+===== Growing through < =====
+Expression evaluated 1
+Expression evaluated 42
+===== Growing through + =====
+Expression evaluated 1
+Expression evaluated 42
+===== Growing through - =====
+Expression evaluated 1
+Expression evaluated 42
+===== Growing through * =====
+Expression evaluated 1
+Expression evaluated 42
+===== Growing through = =====
+Expression evaluated 1
+Expression evaluated 42
+========== Weight 5 ==========
+===== Growing through if =====
+Expression evaluated 1
+Expression evaluated 126
+===== Growing through < =====
+Expression evaluated 1
+Expression evaluated 342
+===== Growing through + =====
+Expression evaluated 1
+Expression evaluated 342
+===== Growing through - =====
+Expression evaluated 1
+Expression evaluated 342
+===== Growing through * =====
+Expression evaluated 1
+Expression evaluated 342
+===== Growing through = =====
+Expression evaluated 1
+Expression evaluated 342
+========== Weight 6 ==========
+===== Growing through if =====
+Expression evaluated 1

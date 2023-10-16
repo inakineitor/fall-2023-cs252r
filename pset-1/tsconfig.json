@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "Bundler",
+    "target": "ESNext",
+    "lib": ["ES2023", "DOM"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true // Removes Deno import warnings
+  }
+}

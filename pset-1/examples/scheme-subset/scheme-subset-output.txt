@@ -1,0 +1,128 @@
+===== Primitives =====
+{ "1": Set(3) { Sym { name: "x" }, Sym { name: "y" }, 1 } }
+===== Operations =====
+[
+  {
+    name: "cons",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "car",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "cdr",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "add1",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "append",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through cons =====
+Expression evaluated 0
+===== Growing through car =====
+Expression evaluated 1
+Expression evaluated 3
+===== Growing through cdr =====
+Expression evaluated 1
+Expression evaluated 4
+===== Growing through add1 =====
+Expression evaluated 1
+Expression evaluated 4
+===== Growing through append =====
+Expression evaluated 0
+========== Weight 3 ==========
+===== Growing through cons =====
+Expression evaluated 1
+Expression evaluated 20
+===== Growing through car =====
+Expression evaluated 1
+Expression evaluated 3
+===== Growing through cdr =====
+Expression evaluated 1
+Expression evaluated 5
+===== Growing through add1 =====
+Expression evaluated 1
+Expression evaluated 6
+===== Growing through append =====
+Expression evaluated 1
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 3
+Program:
+(append x y)
+===== Primitives =====
+{ "1": Set(3) { Sym { name: "x" }, Sym { name: "y" }, 1 } }
+===== Operations =====
+[
+  {
+    name: "cons",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "car",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "cdr",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "add1",
+    arity: 1,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "append",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through cons =====
+Expression evaluated 0
+===== Growing through car =====
+Expression evaluated 1
+Expression evaluated 3
+===== Growing through cdr =====
+Expression evaluated 1
+Expression evaluated 4
+===== Growing through add1 =====
+Expression evaluated 1
+Expression evaluated 6
+===== Growing through append =====
+Expression evaluated 0
+========== Weight 3 ==========
+===== Growing through cons =====
+Expression evaluated 1
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 3
+Program:
+(cons (car x) y)

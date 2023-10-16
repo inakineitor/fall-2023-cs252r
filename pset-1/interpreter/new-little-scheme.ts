@@ -1,10 +1,11 @@
-// A Little Scheme in TypeScript 4.6 / Deno 1.20
+import _ from 'lodash';
+// A Little Scheme in TypeScript 4.6 / Deno 1.20 based on:
 //      v2.0 R01.08.01/R04.03.22 by SUZUKI Hisao
 //   $ tsc --strict -t es2020 scm.ts && deno run scm.js
 // | $ deno run scm.ts
 // | $ deno bundle scm.ts scm.js && deno run scm.js
 
-'use strict';
+('use strict');
 
 import {
   Numeric,
@@ -17,6 +18,7 @@ import {
   convertToString,
   // @ts-ignore error TS2691 -- Deno needs the suffix here.
 } from './arithmetic.ts';
+import { clonePreservingSym } from '../utils/ast/clone-preseving-sym.ts';
 
 // Run the callback on the next event loop.
 let runOnNextLoop = (callback: () => void) => {
@@ -24,7 +26,7 @@ let runOnNextLoop = (callback: () => void) => {
 };
 
 // Read the whole file of fileName as a string.
-let readStringFrom: (fileName: string) => string;
+export let readStringFrom: (fileName: string) => string;
 
 // Write the strig s (and a new line on '\n').
 let write: (s: string) => void;
@@ -34,8 +36,21 @@ let readLine: () => Promise<string | null>;
 
 //----------------------------------------------------------------------
 
+// ===== Iñaki =====
+export type Expression = Cell | Sym | number | boolean | string | null;
+
+export type Operation = {
+  name: string;
+  arity?: number;
+  canApplyTo: (argumentTuple: Expression[]) => boolean;
+  applyTo: (argumentTuple: Expression[]) => Expression;
+};
+
+export type Constant = number | boolean | string | null;
+// ===== Iñaki =====
+
 // Cons cell
-class Cell {
+export class Cell {
   constructor(public readonly car: unknown, public cdr: unknown) {}
 
   // Yield car, cadr, caddr and so on.
@@ -54,6 +69,14 @@ class Cell {
     for (const _e of this) i++;
     return i;
   }
+
+  get fst(): unknown {
+    return this.car as unknown;
+  }
+
+  get snd(): Cell | null {
+    return (this.cdr as Cell).car as Cell | null;
+  }
 }
 
 class ImproperListException extends Error {
@@ -63,7 +86,7 @@ class ImproperListException extends Error {
 }
 
 // Scheme's list
-type List = Cell | null;
+export type List = Cell | null;
 
 // The first element of list
 function fst(x: List): unknown {
@@ -78,7 +101,7 @@ function snd(x: List): unknown {
 //----------------------------------------------------------------------
 
 // Scheme's symbol
-class Sym {
+export class Sym {
   // Construct a symbol that is not interned yet.
   private constructor(private readonly name: string) {}
 
@@ -112,11 +135,11 @@ const CallCCSym = Sym.interned('call/cc');
 //----------------------------------------------------------------------
 
 // Linked list of bindings mapping symbols to values
-class Environment {
+export class Environment {
   constructor(
     public readonly sym: Sym | null,
     public val: unknown,
-    public next: Environment | null,
+    public next: Environment | null = null, // ! Iñaki change
   ) {}
 
   // Yield each binding.
@@ -147,6 +170,14 @@ class Environment {
         this.prependDefs(symbols.cdr as List, data.cdr as List),
       );
     }
+  }
+
+  static clone(env: Environment): Environment {
+    // ! Iñaki change
+    return clonePreservingSym(env);
+    // const env = new Environment(this.sym, this.val);
+    // env.next = this.next === null ? null : this.next.clone();
+    // return env;
   }
 }
 
@@ -223,10 +254,10 @@ class Closure {
   ) {}
 }
 
-type IntrinsicBody = (args: List) => unknown;
+export type IntrinsicBody = (args: List) => unknown;
 
 // Built-in function
-class Intrinsic {
+export class Intrinsic {
   constructor(
     public readonly name: string,
     public readonly arity: number,
@@ -241,7 +272,7 @@ class Intrinsic {
 //----------------------------------------------------------------------
 
 // Exception thrown by error procedure of SRFI-23
-class ErrorException extends Error {
+export class ErrorException extends Error {
   constructor(reason: unknown, arg: unknown) {
     super(stringify(reason, false) + ': ' + stringify(arg));
   }
@@ -268,7 +299,7 @@ const ApplyVal = { toString: () => '#<apply>' };
 //----------------------------------------------------------------------
 
 // Convert an expression to a string.
-function stringify(exp: unknown, quote = true): string {
+export function stringify(exp: unknown, quote = true): string {
   if (exp === null) {
     return '()';
   } else if (exp === true) {
@@ -322,7 +353,7 @@ function stringify(exp: unknown, quote = true): string {
 
 //----------------------------------------------------------------------
 
-function c(
+export function c(
   name: string,
   arity: number,
   fun: IntrinsicBody,
@@ -383,7 +414,7 @@ const G1 = c(
 );
 
 // The global environment
-const GlobalEnv = new Environment(
+export const GlobalEnv = new Environment(
   null, // frame marker
   null,
   c(
@@ -471,7 +502,10 @@ const GlobalEnv = new Environment(
 //----------------------------------------------------------------------
 
 // Evaluate an expression in an environment asynchronously.
-async function evaluate(exp: unknown, env: Environment): Promise<unknown> {
+export async function evaluate(
+  exp: unknown,
+  env: Environment,
+): Promise<unknown> {
   const k = new Continuation();
   try {
     for (;;) {
@@ -660,7 +694,7 @@ function applyFunction(
 
 // Split a string into a list of tokens.
 // For '(a 1)' it returns ['(', 'a', '1', ')'].
-function splitStringIntoTokens(source: string): string[] {
+export function splitStringIntoTokens(source: string): string[] {
   const result: string[] = [];
   for (const line of source.split('\n')) {
     const x: string[] = [];
@@ -690,7 +724,7 @@ function splitStringIntoTokens(source: string): string[] {
 
 // Read an expression from tokens.
 // Tokens will be left with the rest of the token strings, if any.
-function readFromTokens(tokens: string[]): unknown {
+export function readFromTokens(tokens: string[]): unknown {
   const token = tokens.shift();
   switch (token) {
     case undefined:
@@ -747,16 +781,30 @@ async function load(fileName: string): Promise<unknown> {
   let result: unknown = None;
   while (tokens.length > 0) {
     const exp = readFromTokens(tokens);
-    console.log(exp)
     result = await evaluate(exp, GlobalEnv);
   }
   return result; // Return the result of the last expression.
 }
 
+// ! Iñaki function
+export async function loadSchemeDefinitions(
+  fileName: string,
+  baseEnv: Environment,
+): Promise<Environment> {
+  const newEnv = Environment.clone(baseEnv);
+  const source = readStringFrom(fileName);
+  const tokens = splitStringIntoTokens(source);
+  while (tokens.length > 0) {
+    const exp = readFromTokens(tokens);
+    await evaluate(exp, newEnv);
+  }
+  return newEnv;
+}
+
 let stdInTokens: string[] = []; // Tokens from the standard-in
 
 // Read an expression from the standard-in asynchronously.
-async function readExpression(
+export async function readExpression(
   prompt1: string,
   prompt2: string,
 ): Promise<unknown> {
@@ -818,13 +866,13 @@ if (typeof Deno !== 'undefined') {
     return decoder.decode(buf.subarray(0, n));
   };
 
-  const main = async function (): Promise<void> {
-    if (Deno.args.length > 0) {
-      await load(Deno.args[0]);
-      if (Deno.args[1] !== '-') Deno.exit(0);
-    }
-    await readEvalPrintLoop();
-  };
+  //   const main = async function (): Promise<void> {
+  //     if (Deno.args.length > 0) {
+  //       await load(Deno.args[0]);
+  //       if (Deno.args[1] !== '-') Deno.exit(0);
+  //     }
+  //     await readEvalPrintLoop();
+  //   };
 
-  main();
+  //   main();
 }
