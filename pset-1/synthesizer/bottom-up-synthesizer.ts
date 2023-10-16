@@ -83,6 +83,7 @@ export async function synthesizeProgram({
 
   for (let weight = 2; weight <= maxExpressionWeight; weight++) {
     console.log(`========== Weight ${weight} ==========`);
+    console.log(`Unique expression seen: ${seenEvaluations.size}`);
 
     for (
       let operationIdx = 0;
