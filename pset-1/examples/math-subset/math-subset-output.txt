@@ -76,38 +76,164 @@ Expression evaluated 1
 Expression evaluated 6
 ===== Growing through < =====
 Expression evaluated 1
-Expression evaluated 42
+Expression evaluated 54
 ===== Growing through + =====
 Expression evaluated 1
-Expression evaluated 42
+Expression evaluated 54
 ===== Growing through - =====
 Expression evaluated 1
-Expression evaluated 42
+Expression evaluated 54
 ===== Growing through * =====
 Expression evaluated 1
-Expression evaluated 42
+Expression evaluated 54
 ===== Growing through = =====
 Expression evaluated 1
-Expression evaluated 42
+Expression evaluated 54
 ========== Weight 5 ==========
 ===== Growing through if =====
 Expression evaluated 1
-Expression evaluated 126
-===== Growing through < =====
-Expression evaluated 1
-Expression evaluated 342
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 5
+Program:
+(if (< y x) y x)
+===== Primitives =====
+{
+  "1": Set(10) {
+    Sym { name: "x" },
+    Sym { name: "y" },
+    11,
+    16,
+    21,
+    1,
+    3,
+    2,
+    4,
+    5
+  }
+}
+===== Operations =====
+[
+  {
+    name: "+",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "-",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "*",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through + =====
+Expression evaluated 0
+===== Growing through - =====
+Expression evaluated 0
+===== Growing through * =====
+Expression evaluated 0
+========== Weight 3 ==========
 ===== Growing through + =====
 Expression evaluated 1
-Expression evaluated 342
+Expression evaluated 90
 ===== Growing through - =====
 Expression evaluated 1
-Expression evaluated 342
+Expression evaluated 90
 ===== Growing through * =====
 Expression evaluated 1
-Expression evaluated 342
-===== Growing through = =====
+Expression evaluated 90
+========== Weight 4 ==========
+===== Growing through + =====
+Expression evaluated 0
+===== Growing through - =====
+Expression evaluated 0
+===== Growing through * =====
+Expression evaluated 0
+========== Weight 5 ==========
+===== Growing through + =====
 Expression evaluated 1
-Expression evaluated 342
+Expression evaluated 5400
+===== Growing through - =====
+Expression evaluated 1
+
+===== SUCCESS 🎉 =====
+A program that satisfied the examples was found!
+Weight: 5
+Program:
+(- (* y 5.0) 4.0)
+===== Primitives =====
+{
+  "1": Set(5) {
+    Sym { name: "a" },
+    Sym { name: "b" },
+    Sym { name: "c" },
+    Sym { name: "d" },
+    1
+  }
+}
+===== Operations =====
+[
+  {
+    name: "+",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "-",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  },
+  {
+    name: "*",
+    arity: 2,
+    canApplyTo: [Function (anonymous)],
+    applyTo: [Function: applyTo]
+  }
+]
+========== Weight 2 ==========
+===== Growing through + =====
+Expression evaluated 0
+===== Growing through - =====
+Expression evaluated 0
+===== Growing through * =====
+Expression evaluated 0
+========== Weight 3 ==========
+===== Growing through + =====
+Expression evaluated 1
+Expression evaluated 20
+===== Growing through - =====
+Expression evaluated 1
+Expression evaluated 20
+===== Growing through * =====
+Expression evaluated 1
+Expression evaluated 20
+========== Weight 4 ==========
+===== Growing through + =====
+Expression evaluated 0
+===== Growing through - =====
+Expression evaluated 0
+===== Growing through * =====
+Expression evaluated 0
+========== Weight 5 ==========
+===== Growing through + =====
+Expression evaluated 1
+Expression evaluated 600
+===== Growing through - =====
+Expression evaluated 1
+Expression evaluated 600
+===== Growing through * =====
+Expression evaluated 1
+Expression evaluated 600
 ========== Weight 6 ==========
-===== Growing through if =====
-Expression evaluated 1
+===== Growing through + =====
